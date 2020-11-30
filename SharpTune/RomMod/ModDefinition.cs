@@ -352,7 +352,7 @@ namespace SharpTune.RomMod
                     }
 
                     char[] splitter = { '\0' };
-                    string tempstring = System.Text.Encoding.ASCII.GetString(tempbytelist.ToArray());
+                    string tempstring = System.Text.Encoding.UTF8.GetString(tempbytelist.ToArray());
                     metaString = tempstring.Split(splitter)[0];
                     return true;
                 }

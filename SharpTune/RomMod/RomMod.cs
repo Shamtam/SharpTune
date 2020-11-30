@@ -240,6 +240,9 @@ namespace SharpTune.RomMod
                     return false;
                 }
             }
+
+            // use baseline'd patch to create new mod
+            mod = new Mod(mod.ModIdent + ".patch");
             File.Copy(romPath, "oem.bin", true);
             Trace.WriteLine("Attempting to test patches");
             if (!mod.TryCheckApplyMod(romPath, romPath, true, false)) //&& !mod.TryCheckApplyMod(romPath, romPath, false, false)) ;

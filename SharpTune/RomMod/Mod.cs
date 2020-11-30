@@ -211,8 +211,8 @@ namespace SharpTune.RomMod
             FilePath = modPath;
             isResource = false;
             reader = new SRecordReader(modPath);
-            TryReadPatches();
-            TryReversePatches();
+            //TryReadPatches();
+            //TryReversePatches();
         }
 
         public bool TryDefinition(AvailableDevices ad, string defPath)
