@@ -22,11 +22,17 @@ using SharpTune.EcuMapTools;
 using System.Text;
 using EcuMapTools;
 using SharpTuneCore;
+using System.Runtime.InteropServices;
 
 namespace SharpTune
 {
     public static class Program
     {
+        // defines for commandline output
+        [DllImport("kernel32.dll")]
+        static extern bool AttachConsole(int dwProcessId);
+        private const int ATTACH_PARENT_PROCESS = -1;
+
         private static SharpTuner sharpTuner;
         /// <summary>
         /// Entry point.  Runs the utility with or without exception handling, depending on whether a debugger is attached.
@@ -45,6 +51,9 @@ namespace SharpTune
             {
                 try
                 {
+                    // redirect console output to parent process;
+                    // must be before any calls to Console.WriteLine()
+                    AttachConsole(ATTACH_PARENT_PROCESS);
                     result = Run(args);
                 }
                 catch (Exception exception)
